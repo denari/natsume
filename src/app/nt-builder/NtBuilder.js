@@ -1,36 +1,8 @@
-import React, {Component} from 'react';
-import {render} from 'react-dom';
-import {
-  SortableContainer,
-  SortableElement,
-  SortableHandle,
-} from 'react-sortable-hoc';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
 import { connect } from 'react-redux';
-
-const DragHandle = SortableHandle(() => {
-  return (
-    <span>:hoge:</span>
-  )
-});
-
-const SortableItem = SortableElement(({value}) => {
-  return (
-    <li>
-      <DragHandle />
-      {value}
-    </li>
-  );
-});
-
-const SortableList = SortableContainer(({items}) => {
-  return (
-    <ul>
-      {items.map((value, index) => (
-        <SortableItem key={`item-${index}`} index={index} value={value} />
-      ))}
-    </ul>
-  );
-});
+import NtBuildBlockList from './NtBuildBlockList'
+import NtBuildPreview from './NtBuildPreview'
 
 class NtBuilder extends Component {
   constructor(props) {
@@ -48,13 +20,20 @@ class NtBuilder extends Component {
 
   render() {
     const {items} = this.props.state;
-    console.log("render", this.props.state)
-    return <SortableList items={items} onSortEnd={this.onSortEnd} useDragHandle={true} />;
+    return (
+      <div className="builder-page-wrapper">
+        <NtBuildBlockList
+          items={items}
+          onSortEnd={this.onSortEnd}
+          useDragHandle={true}
+        />
+        <NtBuildPreview />
+      </div>
+    );
   }
 }
 
 function mapStateToProps(state) {
-  console.log("mapStateToProps", state)
   return {
     state
   };

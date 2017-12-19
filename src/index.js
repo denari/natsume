@@ -7,7 +7,20 @@ import NtReducer from "./app/nt-reducer/NtReducer"
 import App from './app/App';
 
 const initialState = {
-  items: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6'],
+  items: [
+    {
+      name: 'test',
+      type: 'Section (Generic)',
+    },
+    {
+      name: 'test2',
+      type: 'Section (Generic)',
+    },
+    {
+      name: 'test3',
+      type: 'Section (Generic)',
+    }
+  ],
 };
 
 const store = createStore(NtReducer, initialState);

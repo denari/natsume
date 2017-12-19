@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Tabs, Tab} from 'material-ui/Tabs';
+import { Tabs, Tab } from 'material-ui/Tabs';
 
 import NtHeader from './nt-header/NtHeader'
 import NtBuilderPage from './nt-builder/NtBuilderPage'
