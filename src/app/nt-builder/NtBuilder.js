@@ -4,12 +4,12 @@ import {
   SortableContainer,
   SortableElement,
   SortableHandle,
-  arrayMove,
 } from 'react-sortable-hoc';
+import { connect } from 'react-redux';
 
 const DragHandle = SortableHandle(() => {
   return (
-    <span>:hogehgoe:</span>
+    <span>:hoge:</span>
   )
 });
 
@@ -35,23 +35,29 @@ const SortableList = SortableContainer(({items}) => {
 class NtBuilder extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      items: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6'],
-    };
     this.onSortEnd = this.onSortEnd.bind(this)
   }
+
   onSortEnd({oldIndex, newIndex}) {
-    const {items} = this.state;
-
-    this.setState({
-      items: arrayMove(items, oldIndex, newIndex),
-    });
+    this.props.dispatch({
+      type: "LIST_SORT",
+      oldIndex: oldIndex,
+      newIndex: newIndex
+    })
   };
-  render() {
-    const {items} = this.state;
 
+  render() {
+    const {items} = this.props.state;
+    console.log("render", this.props.state)
     return <SortableList items={items} onSortEnd={this.onSortEnd} useDragHandle={true} />;
   }
 }
 
-export default NtBuilder;
+function mapStateToProps(state) {
+  console.log("mapStateToProps", state)
+  return {
+    state
+  };
+}
+
+export default connect(mapStateToProps)(NtBuilder);

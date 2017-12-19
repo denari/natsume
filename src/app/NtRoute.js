@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 
 import NtHeader from './nt-header/NtHeader'
-import NtBuilder from './nt-builder/NtBuilder'
+import NtBuilderPage from './nt-builder/NtBuilderPage'
 
 
 class NtRoute extends Component {
@@ -11,17 +11,17 @@ class NtRoute extends Component {
       <div>
         <NtHeader />
         <Tabs>
-          <Tab label="Item One" >
-            <NtBuilder />
+          <Tab label="Builder" >
+            <NtBuilderPage class="hoge" />
           </Tab>
-          <Tab label="Item Two" >
+          <Tab label="Preview :: PC" >
             <div>
               <p>
                 This is another example tab.
               </p>
             </div>
           </Tab>
-          <Tab label="onActive" >
+          <Tab label="Preview :: SmartPhone" >
             <div>
               <p>
                 This is a third example tab.
